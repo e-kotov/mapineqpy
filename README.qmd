@@ -287,7 +287,7 @@ plt.savefig("docs/figures/edu_vs_life_exp_map.png", dpi=300)
 
 To cite `mapineqpy` and the data/API, please use:
 
-Kotov, Egor. "mapineqpy: A Python package for accessing Mapineq API data." 2024. Available at: https://github.com/e-kotov/mapineqpy
+Kotov E. "mapineqpy: A Python package for accessing Mapineq API data." 2024. Available at: https://github.com/e-kotov/mapineqpy
 
 Mills M, Leasure D (2024). “Mapineq Link: Geospatial Dashboard and
 Database.” doi:10.5281/zenodo.13864000
