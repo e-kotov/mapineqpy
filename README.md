@@ -18,6 +18,14 @@ API](https://www.mapineq.org/data-users/) and
 <https://github.com/e-kotov/mapineqr> and
 <https://www.ekotov.pro/mapineqr>.
 
+You can read the docs for all functions in this draft documentation
+page:
+<https://www.ekotov.pro/mapineqpy/mapineqpy.html#module-mapineqpy>. Help
+is needed to make it look good, I’m no expert with sphinx.
+
+For now it is better to just read the rest of this readme to see the
+example usage of all functions.
+
 ## Installation
 
 Install the development version of `mapineqpy` from GitHub:
