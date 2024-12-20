@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mapineqpy package &mdash; mapineqpy</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            mapineqpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">mapineqpy package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-mapineqpy.config">mapineqpy.config module</a></li>
+<li><a class="reference internal" href="#module-mapineqpy.data">mapineqpy.data module</a><ul>
+<li><a class="reference internal" href="#mapineqpy.data.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mapineqpy.levels">mapineqpy.levels module</a><ul>
+<li><a class="reference internal" href="#mapineqpy.levels.nuts_levels"><code class="docutils literal notranslate"><span class="pre">nuts_levels()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mapineqpy.source_filters">mapineqpy.source_filters module</a><ul>
+<li><a class="reference internal" href="#mapineqpy.source_filters.source_filters"><code class="docutils literal notranslate"><span class="pre">source_filters()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mapineqpy.sources">mapineqpy.sources module</a><ul>
+<li><a class="reference internal" href="#mapineqpy.sources.source_coverage"><code class="docutils literal notranslate"><span class="pre">source_coverage()</span></code></a></li>
+<li><a class="reference internal" href="#mapineqpy.sources.sources"><code class="docutils literal notranslate"><span class="pre">sources()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mapineqpy">Module contents</a><ul>
+<li><a class="reference internal" href="#mapineqpy.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
+<li><a class="reference internal" href="#mapineqpy.nuts_levels"><code class="docutils literal notranslate"><span class="pre">nuts_levels()</span></code></a></li>
+<li><a class="reference internal" href="#mapineqpy.source_coverage"><code class="docutils literal notranslate"><span class="pre">source_coverage()</span></code></a></li>
+<li><a class="reference internal" href="#mapineqpy.source_filters"><code class="docutils literal notranslate"><span class="pre">source_filters()</span></code></a></li>
+<li><a class="reference internal" href="#mapineqpy.sources"><code class="docutils literal notranslate"><span class="pre">sources()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">mapineqpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">mapineqpy package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mapineqpy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mapineqpy-package">
+<h1>mapineqpy package<a class="headerlink" href="#mapineqpy-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-mapineqpy.config">
+<span id="mapineqpy-config-module"></span><h2>mapineqpy.config module<a class="headerlink" href="#module-mapineqpy.config" title="Link to this heading"></a></h2>
+</section>
+<section id="module-mapineqpy.data">
+<span id="mapineqpy-data-module"></span><h2>mapineqpy.data module<a class="headerlink" href="#module-mapineqpy.data" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.data.data">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.data.</span></span><span class="sig-name descname"><span class="pre">data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.data.data" title="Link to this definition"></a></dt>
+<dd><p>Fetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_source</strong> (<em>str</em>) – Source name for the x variable.</p></li>
+<li><p><strong>y_source</strong> (<em>str</em><em>, </em><em>optional</em>) – Source name for the y variable. Default is None.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year for data.</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – The NUTS level (“0”, “1”, “2”, “3”).</p></li>
+<li><p><strong>x_filters</strong> (<em>dict</em>) – Filters for the x variable as a dictionary of field-value pairs.</p></li>
+<li><p><strong>y_filters</strong> (<em>dict</em><em>, </em><em>optional</em>) – Filters for the y variable as a dictionary of field-value pairs. Default is None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to return. Default is 2000.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing univariate or bivariate data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p># Univariate example
+&gt;&gt;&gt; mi.data(
+…     x_source=”TGS00010”,
+…     year=2020,
+…     level=”2”,
+…     x_filters={“isced11”: “TOTAL”, “unit”: “PC”, “age”: “Y_GE15”, “freq”: “A”}
+… )</p>
+<p># Bivariate example
+&gt;&gt;&gt; mi.data(
+…     x_source=”TGS00010”,
+…     y_source=”DEMO_R_MLIFEXP”,
+…     year=2020,
+…     level=”2”,
+…     x_filters={“isced11”: “TOTAL”, “unit”: “PC”, “age”: “Y_GE15”, “freq”: “A”},
+…     y_filters={“unit”: “YR”, “age”: “Y_LT1”, “freq”: “A”}
+… )</p>
+</dd></dl>
+
+</section>
+<section id="module-mapineqpy.levels">
+<span id="mapineqpy-levels-module"></span><h2>mapineqpy.levels module<a class="headerlink" href="#module-mapineqpy.levels" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.levels.nuts_levels">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.levels.</span></span><span class="sig-name descname"><span class="pre">nuts_levels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.levels.nuts_levels" title="Link to this definition"></a></dt>
+<dd><p>Get a list of available NUTS levels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of valid NUTS levels as strings that will be accepted by other functions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_nuts_levels</span><span class="p">()</span>
+<span class="go">[&#39;3&#39;, &#39;2&#39;, &#39;1&#39;, &#39;0&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-mapineqpy.source_filters">
+<span id="mapineqpy-source-filters-module"></span><h2>mapineqpy.source_filters module<a class="headerlink" href="#module-mapineqpy.source_filters" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.source_filters.source_filters">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.source_filters.</span></span><span class="sig-name descname"><span class="pre">source_filters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.source_filters.source_filters" title="Link to this definition"></a></dt>
+<dd><p>Fetch possible filtering values for a given source, year, and NUTS level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – The name of the data source (f_resource).</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year for filtering.</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – The NUTS level (“0”, “1”, “2”, “3”).</p></li>
+<li><p><strong>filters</strong> (<em>dict</em><em>, </em><em>optional</em>) – A dictionary where the keys are filter fields and
+values are the selected filter values. Default is None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to fetch. Default is 40.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A DataFrame with fields, labels, and their possible values for filtering:</dt><dd><ul class="simple">
+<li><p>field: Filter field name.</p></li>
+<li><p>field_label: Filter field label.</p></li>
+<li><p>label: Value label.</p></li>
+<li><p>value: Value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-mapineqpy.sources">
+<span id="mapineqpy-sources-module"></span><h2>mapineqpy.sources module<a class="headerlink" href="#module-mapineqpy.sources" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.sources.source_coverage">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.sources.</span></span><span class="sig-name descname"><span class="pre">source_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.sources.source_coverage" title="Link to this definition"></a></dt>
+<dd><p>Get the NUTS level and Year coverage for a specific data source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – The name of the data source.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to fetch. Default is 1500.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A DataFrame with coverage metadata:</dt><dd><ul class="simple">
+<li><p>nuts_level: NUTS level</p></li>
+<li><p>year: Year</p></li>
+<li><p>source_name: Name of the data source</p></li>
+<li><p>short_description: Short description of the data source</p></li>
+<li><p>description: Full description of the data source</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mi_source_coverage</span><span class="p">(</span><span class="s2">&quot;BD_HGNACE2_R3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.sources.sources">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.sources.</span></span><span class="sig-name descname"><span class="pre">sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.sources.sources" title="Link to this definition"></a></dt>
+<dd><p>Get a list of available data sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>str</em>) – A string specifying the NUTS level (“0”, “1”, “2”, “3”).</p></li>
+<li><p><strong>year</strong> (<em>int</em><em>, </em><em>optional</em>) – An integer specifying the year. Default is None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to fetch. Default is 1000.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A DataFrame with source metadata, containing:</dt><dd><ul class="simple">
+<li><p>source_name: Name of the data source</p></li>
+<li><p>short_description: Short description of the data source</p></li>
+<li><p>description: Full description of the data source</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mi_sources</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mi_sources</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2020</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-mapineqpy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mapineqpy" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.data">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.</span></span><span class="sig-name descname"><span class="pre">data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.data" title="Link to this definition"></a></dt>
+<dd><p>Fetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_source</strong> (<em>str</em>) – Source name for the x variable.</p></li>
+<li><p><strong>y_source</strong> (<em>str</em><em>, </em><em>optional</em>) – Source name for the y variable. Default is None.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year for data.</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – The NUTS level (“0”, “1”, “2”, “3”).</p></li>
+<li><p><strong>x_filters</strong> (<em>dict</em>) – Filters for the x variable as a dictionary of field-value pairs.</p></li>
+<li><p><strong>y_filters</strong> (<em>dict</em><em>, </em><em>optional</em>) – Filters for the y variable as a dictionary of field-value pairs. Default is None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to return. Default is 2000.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing univariate or bivariate data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p># Univariate example
+&gt;&gt;&gt; mi.data(
+…     x_source=”TGS00010”,
+…     year=2020,
+…     level=”2”,
+…     x_filters={“isced11”: “TOTAL”, “unit”: “PC”, “age”: “Y_GE15”, “freq”: “A”}
+… )</p>
+<p># Bivariate example
+&gt;&gt;&gt; mi.data(
+…     x_source=”TGS00010”,
+…     y_source=”DEMO_R_MLIFEXP”,
+…     year=2020,
+…     level=”2”,
+…     x_filters={“isced11”: “TOTAL”, “unit”: “PC”, “age”: “Y_GE15”, “freq”: “A”},
+…     y_filters={“unit”: “YR”, “age”: “Y_LT1”, “freq”: “A”}
+… )</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.nuts_levels">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.</span></span><span class="sig-name descname"><span class="pre">nuts_levels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.nuts_levels" title="Link to this definition"></a></dt>
+<dd><p>Get a list of available NUTS levels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of valid NUTS levels as strings that will be accepted by other functions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_nuts_levels</span><span class="p">()</span>
+<span class="go">[&#39;3&#39;, &#39;2&#39;, &#39;1&#39;, &#39;0&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.source_coverage">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.</span></span><span class="sig-name descname"><span class="pre">source_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.source_coverage" title="Link to this definition"></a></dt>
+<dd><p>Get the NUTS level and Year coverage for a specific data source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – The name of the data source.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to fetch. Default is 1500.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A DataFrame with coverage metadata:</dt><dd><ul class="simple">
+<li><p>nuts_level: NUTS level</p></li>
+<li><p>year: Year</p></li>
+<li><p>source_name: Name of the data source</p></li>
+<li><p>short_description: Short description of the data source</p></li>
+<li><p>description: Full description of the data source</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mi_source_coverage</span><span class="p">(</span><span class="s2">&quot;BD_HGNACE2_R3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.source_filters">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.</span></span><span class="sig-name descname"><span class="pre">source_filters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.source_filters" title="Link to this definition"></a></dt>
+<dd><p>Fetch possible filtering values for a given source, year, and NUTS level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – The name of the data source (f_resource).</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year for filtering.</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – The NUTS level (“0”, “1”, “2”, “3”).</p></li>
+<li><p><strong>filters</strong> (<em>dict</em><em>, </em><em>optional</em>) – A dictionary where the keys are filter fields and
+values are the selected filter values. Default is None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to fetch. Default is 40.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A DataFrame with fields, labels, and their possible values for filtering:</dt><dd><ul class="simple">
+<li><p>field: Filter field name.</p></li>
+<li><p>field_label: Filter field label.</p></li>
+<li><p>label: Value label.</p></li>
+<li><p>value: Value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mapineqpy.sources">
+<span class="sig-prename descclassname"><span class="pre">mapineqpy.</span></span><span class="sig-name descname"><span class="pre">sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mapineqpy.sources" title="Link to this definition"></a></dt>
+<dd><p>Get a list of available data sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>str</em>) – A string specifying the NUTS level (“0”, “1”, “2”, “3”).</p></li>
+<li><p><strong>year</strong> (<em>int</em><em>, </em><em>optional</em>) – An integer specifying the year. Default is None.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results to fetch. Default is 1000.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A DataFrame with source metadata, containing:</dt><dd><ul class="simple">
+<li><p>source_name: Name of the data source</p></li>
+<li><p>short_description: Short description of the data source</p></li>
+<li><p>description: Full description of the data source</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mi_sources</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mi_sources</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2020</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Egor Kotov.
+      <span class="lastupdated">Last updated on 2024-12-20.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
