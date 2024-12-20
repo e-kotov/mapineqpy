@@ -1,90 +1,93 @@
-# mapineqpy
-
+---
+title: mapineqpy
+format: gfm
+execute: 
+  message: false
+  warning: false
+eval: false
+---
 
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
 # mapineqpy
 
 <!-- badges: start -->
-
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of `mapineqpy` is to access the data from the [Mapineq.org
-API](https://www.mapineq.org/data-users/) and
-[dashboard](https://dashboard.mapineq.org/datacatalogue) (product of the
-[Mapineq](https://mapineq.eu/) project). For R package, see
-<https://github.com/e-kotov/mapineqr> and
-<https://www.ekotov.pro/mapineqr>.
+The goal of `mapineqpy` is to access the data from the [Mapineq.org API](https://www.mapineq.org/data-users/) and [dashboard](https://dashboard.mapineq.org/datacatalogue) (product of the [Mapineq](https://mapineq.eu/) project). For R package, see [https://github.com/e-kotov/mapineqr](https://github.com/e-kotov/mapineqr) and [https://www.ekotov.pro/mapineqr](https://www.ekotov.pro/mapineqr).
 
 ## Installation
 
 Install the development version of `mapineqpy` from GitHub:
 
-``` bash
+```bash
 pip install git+https://github.com/e-kotov/mapineqpy.git
 ```
 
 ## Basic Example - Univariate Data and Maps
 
-1.  Get the full list of available data at NUTS 3 level:
+1. Get the full list of available data at NUTS 3 level:
 
-``` python
+```{python}
 import mapineqpy as mi
 
 available_data = mi.sources(level="3")
 print(available_data.head())
 ```
 
-         source_name     short_description                                        description
-    0   DEMO_R_D3AREA       Area of regions                      Area by NUTS 3 region (ESTAT)
-    1  PROJ_19RAASFR3  Fertility assumption  Assumptions for fertility rates by age, type o...
-    2  PROJ_19RAASMR3     Death assumptions  Assumptions for probability of dying by age, s...
-    3   BD_HGNACE2_R3  Business demography   Business demography and high growth enterprise...
-    4      BD_SIZE_R3  Business demography   Business demography by size class and NUTS 3 r...
+```
+     source_name     short_description                                        description
+0   DEMO_R_D3AREA       Area of regions                      Area by NUTS 3 region (ESTAT)
+1  PROJ_19RAASFR3  Fertility assumption  Assumptions for fertility rates by age, type o...
+2  PROJ_19RAASMR3     Death assumptions  Assumptions for probability of dying by age, s...
+3   BD_HGNACE2_R3  Business demography   Business demography and high growth enterprise...
+4      BD_SIZE_R3  Business demography   Business demography by size class and NUTS 3 r...
+```
 
-2.  Select data source by `source_name` column and check its year and
-    NUTS level coverage:
+2. Select data source by `source_name` column and check its year and NUTS level coverage:
 
-``` python
+```{python}
 coverage = mi.source_coverage("CRIM_GEN_REG")
 print(coverage)
 ```
 
-    nuts_level  year   source_name short_description                                        description
-    0           0  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    1           0  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    2           0  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    3           1  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    4           1  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    5           1  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    6           2  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    7           2  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    8           2  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    9           3  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    10          3  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
-    11          3  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+```
+nuts_level  year   source_name short_description                                        description
+0           0  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+1           0  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+2           0  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+3           1  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+4           1  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+5           1  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+6           2  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+7           2  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+8           2  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+9           3  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+10          3  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+11          3  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery
+```
 
-3.  Check the available filters for the data source:
+3. Check the available filters for the data source:
 
-``` python
+```{python}
 filters = mi.source_filters("CRIM_GEN_REG", year=2010, level="2")
 print(filters)
 ```
 
-     field                                        field_label                                     label       value
-    0  unit                                    Unit of measure                                    Number          NR
-    1  freq                                     Time frequency                                    Annual           A
-    2  iccs  International classification of crime for stat...                      Intentional homicide    ICCS0101
-    3  iccs  International classification of crime for stat...                                   Robbery    ICCS0401
-    4  iccs  International classification of crime for stat...  Burglary of private residential premises   ICCS05012
-    5  iccs  International classification of crime for stat...         Theft of a motorized land vehicle  ICCS050211
+```
+ field                                        field_label                                     label       value
+0  unit                                    Unit of measure                                    Number          NR
+1  freq                                     Time frequency                                    Annual           A
+2  iccs  International classification of crime for stat...                      Intentional homicide    ICCS0101
+3  iccs  International classification of crime for stat...                                   Robbery    ICCS0401
+4  iccs  International classification of crime for stat...  Burglary of private residential premises   ICCS05012
+5  iccs  International classification of crime for stat...         Theft of a motorized land vehicle  ICCS050211
+```
 
-4.  Choose the indicator to filter (let it be burglaries) and get the
-    data:
+4. Choose the indicator to filter (let it be burglaries) and get the data:
 
-``` python
+```{python}
 data = mi.data(
     x_source="CRIM_GEN_REG",
     year=2010,
@@ -94,18 +97,20 @@ data = mi.data(
 print(data.head())
 ```
 
-      geo          geo_name best_year       x
-    0  AT11    Burgenland (A)      2008   223.0
-    1  AT12  Niederösterreich      2008  2557.0
-    2  AT13              Wien      2008  9319.0
-    3  AT21           Kärnten      2008   507.0
-    4  AT22        Steiermark      2008  1163.0
+```
+  geo          geo_name best_year       x
+0  AT11    Burgenland (A)      2008   223.0
+1  AT12  Niederösterreich      2008  2557.0
+2  AT13              Wien      2008  9319.0
+3  AT21           Kärnten      2008   507.0
+4  AT22        Steiermark      2008  1163.0
+```
 
-5.  Map the indicator using NUTS2 polygons:
+5. Map the indicator using NUTS2 polygons:
 
 5.1 Get the NUTS2 level data:
 
-``` python
+```{python}
 from gisco_geodata import (
     NUTS,
     set_httpx_args
@@ -126,9 +131,10 @@ nuts = NUTS()
 nuts2 = nuts.get(spatial_type='RG', nuts_level='LEVL_2')
 ```
 
-5.2 Join the data with NUTS2 polygons and plot a map:
 
-``` python
+
+5.2 Join the data with NUTS2 polygons and plot a map:
+```{python}
 import matplotlib.pyplot as plt
 
 # Join the data with NUTS2 polygons
@@ -143,12 +149,12 @@ plt.savefig("docs/figures/map_burglaries.png", dpi=300)
 
 ![Map of Burglaries](docs/figures/map_burglaries.png)
 
+
 ## Advanced Example - Bivariate Data and Maps
 
-1.  Get the data for two indicators (e.g., unemployment rate and life
-    expectancy):
+1. Get the data for two indicators (e.g., unemployment rate and life expectancy):
 
-``` python
+```{python}
 xy_data = mi.data(
     year=2018,
     level="2",
@@ -160,16 +166,18 @@ xy_data = mi.data(
 print(xy_data.head())
 ```
 
-       geo          geo_name best_year    x     y
-    0  AL01              Veri      2018  NaN   NaN
-    1  AL02            Qender      2018  NaN   NaN
-    2  AL03               Jug      2018  NaN   NaN
-    3  AT11        Burgenland      2018  4.2  81.5
-    4  AT12  Niederösterreich      2018  3.8  81.5
+```
+   geo          geo_name best_year    x     y
+0  AL01              Veri      2018  NaN   NaN
+1  AL02            Qender      2018  NaN   NaN
+2  AL03               Jug      2018  NaN   NaN
+3  AT11        Burgenland      2018  4.2  81.5
+4  AT12  Niederösterreich      2018  3.8  81.5
+```
 
-2.  Plot a scatterplot:
+2. Plot a scatterplot:
 
-``` python
+```{python}
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -188,20 +196,18 @@ plt.title("Unemployment vs Life Expectancy")
 plt.savefig("docs/figures/edu_vs_life_exp_plot.png", dpi=300)
 ```
 
-![Unemployment vs Life
-Expectancy](docs/figures/edu_vs_life_exp_plot.png)
+![Unemployment vs Life Expectancy](docs/figures/edu_vs_life_exp_plot.png)
 
-3.  Add the bivariate data to the NUTS2 polygons and create a map:
+3. Add the bivariate data to the NUTS2 polygons and create a map:
 
-``` python
+```{python}
 nuts2 = nuts.get(spatial_type='RG', nuts_level='LEVL_2')
 nuts2 = nuts2.merge(xy_data, left_on="NUTS_ID", right_on="geo", how="left")
 ```
 
-Thanks to https://github.com/mikhailsirenko/bivariate-choropleth for the
-code for bivariate map.
+Thanks to https://github.com/mikhailsirenko/bivariate-choropleth for the code for bivariate map.
 
-``` python
+```{python}
 from mapclassify import Quantiles
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
@@ -215,7 +221,8 @@ nuts2['x_scaled'] = scaler.fit_transform(nuts2[['x']])
 nuts2['y_scaled'] = scaler.fit_transform(nuts2[['y']])
 ```
 
-``` python
+
+```{python}
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import pandas as pd
@@ -271,6 +278,7 @@ legend_ax.axis("off")  # Turn off the axis for a clean legend
 # Save the map
 # plt.savefig("bivariate_choropleth_with_legend.png", dpi=300)
 plt.savefig("docs/figures/edu_vs_life_exp_map.png", dpi=300)
+
 ```
 
 ![Unemployment vs Life Expectancy](docs/figures/edu_vs_life_exp_map.png)
@@ -279,8 +287,7 @@ plt.savefig("docs/figures/edu_vs_life_exp_map.png", dpi=300)
 
 To cite `mapineqpy` and the data/API, please use:
 
-Kotov, Egor. “mapineqpy: A Python package for accessing Mapineq API
-data.” 2024. Available at: https://github.com/e-kotov/mapineqpy
+Kotov, Egor. "mapineqpy: A Python package for accessing Mapineq API data." 2024. Available at: https://github.com/e-kotov/mapineqpy
 
 Mills M, Leasure D (2024). “Mapineq Link: Geospatial Dashboard and
 Database.” doi:10.5281/zenodo.13864000
