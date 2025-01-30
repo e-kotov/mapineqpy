@@ -5,7 +5,7 @@ from mapineqpy.config import BASE_API_ENDPOINT, USER_AGENT
 
 
 def data(
-    x_source, y_source=None, year=None, level=None, x_filters=None, y_filters=None, limit=2000
+    x_source, y_source=None, year=None, level=None, x_filters=None, y_filters=None, limit=2500
 ):
     """
     Fetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.
@@ -17,7 +17,7 @@ def data(
         level (str): The NUTS level ("0", "1", "2", "3").
         x_filters (dict): Filters for the x variable as a dictionary of field-value pairs.
         y_filters (dict, optional): Filters for the y variable as a dictionary of field-value pairs. Default is None.
-        limit (int): Maximum number of results to return. Default is 2000.
+        limit (int): Maximum number of results to return. Default is 2500.
 
     Returns:
         pd.DataFrame: A DataFrame containing univariate or bivariate data.

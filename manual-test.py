@@ -21,7 +21,7 @@ print(levels)  # Should return a list like ["0", "1", "2", "3"]
 sources = mi.get_sources(client, level="2", limit=5)
 print(sources)  # Should print a list of sources for NUTS level 2
 
-coverage = mi.source_coverage(client, source_name="BD_HGNACE2_R3", limit=1000)
+coverage = mi.source_coverage(client, source_name="BD_HGNACE2_R3", limit=2500)
 print(coverage)
 
 filters = mi.fetch_filter_options(
