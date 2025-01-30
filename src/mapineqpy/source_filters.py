@@ -4,7 +4,7 @@ import json
 from mapineqpy.config import BASE_API_ENDPOINT, USER_AGENT
 
 
-def source_filters(source_name, year, level, filters=None, limit=40):
+def source_filters(source_name, year, level, filters=None, limit=2500):
     """
     Fetch possible filtering values for a given source, year, and NUTS level.
 

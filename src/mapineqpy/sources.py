@@ -3,14 +3,14 @@ import pandas as pd
 from mapineqpy.config import BASE_API_ENDPOINT, USER_AGENT
 
 
-def sources(level, year=None, limit=1000):
+def sources(level, year=None, limit=2500):
     """
     Get a list of available data sources.
 
     Args:
         level (str): A string specifying the NUTS level ("0", "1", "2", "3").
         year (int, optional): An integer specifying the year. Default is None.
-        limit (int): Maximum number of results to fetch. Default is 1000.
+        limit (int): Maximum number of results to fetch. Default is 2500.
 
     Returns:
         pd.DataFrame: A DataFrame with source metadata, containing:
@@ -55,13 +55,13 @@ def sources(level, year=None, limit=1000):
     )
     return df[["source_name", "short_description", "description"]]
 
-def source_coverage(source_name, limit=1500):
+def source_coverage(source_name, limit=2500):
     """
     Get the NUTS level and Year coverage for a specific data source.
 
     Args:
         source_name (str): The name of the data source.
-        limit (int): Maximum number of results to fetch. Default is 1500.
+        limit (int): Maximum number of results to fetch. Default is 2500.
 
     Returns:
         pd.DataFrame: A DataFrame with coverage metadata:
