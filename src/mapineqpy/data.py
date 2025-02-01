@@ -17,7 +17,8 @@ def data(
         level (str): The NUTS level ("0", "1", "2", "3").
         x_filters (dict): Filters for the x variable as a dictionary of field-value pairs.
         y_filters (dict, optional): Filters for the y variable as a dictionary of field-value pairs. Default is None.
-        limit (int): Maximum number of results to return. Default is 2500.
+        limit (int): Maximum number of results to return. Default is 2500. This default should be enough for most uses, 
+                     as it is well above the number of NUTS 3 regions in the EU. The maximum allowed by the API is 10,000.
 
     Returns:
         pd.DataFrame: A DataFrame containing univariate or bivariate data with the following columns:
@@ -71,11 +72,13 @@ def data(
         raise ValueError("`year` must be an integer.")
     if y_source is not None and not isinstance(y_source, str):
         raise ValueError("`y_source` must be a string if provided.")
+    if not isinstance(limit, int) or not (1 <= limit <= 10000):
+        raise ValueError("`limit` must be an integer between 1 and 10,000.")
 
     # Build JSON for X filters
     x_conditions = [{"field": key, "value": value} for key, value in x_filters.items()]
     x_json = {"source": x_source, "conditions": x_conditions}
-    x_json_string = json.dumps(x_json, separators=(",", ":"))  # Compact JSON format
+    x_json_string = json.dumps(x_json, separators=(",", ":"))
 
     # Check if bivariate (Y filters provided)
     y_json_string = None
