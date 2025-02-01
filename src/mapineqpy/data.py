@@ -17,7 +17,8 @@ def data(
         level (str): The NUTS level ("0", "1", "2", "3").
         x_filters (dict): Filters for the x variable as a dictionary of field-value pairs.
         y_filters (dict, optional): Filters for the y variable as a dictionary of field-value pairs. Default is None.
-        limit (int): Maximum number of results to return. Default is 2500.
+        limit (int): Maximum number of results to return. Default is 2500. This default should be enough for most uses, 
+                     as it is well above the number of NUTS 3 regions in the EU. The maximum allowed by the API is 10,000.
 
     Returns:
         pd.DataFrame: A DataFrame containing univariate or bivariate data with the following columns:
@@ -71,11 +72,14 @@ def data(
         raise ValueError("`year` must be an integer.")
     if y_source is not None and not isinstance(y_source, str):
         raise ValueError("`y_source` must be a string if provided.")
+    if not isinstance(limit, int) or not (1 <= limit <= 10000):
+        raise ValueError("`limit` must be an integer between 1 and 10,000.")
 
     # Build JSON for X filters
     x_conditions = [{"field": key, "value": value} for key, value in x_filters.items()]
     x_json = {"source": x_source, "conditions": x_conditions}
-    x_json_string = json.dumps(x_json, separators=(",", ":"))  # Compact JSON format
+    # Use separators to minify the JSON (i.e. remove extra whitespace)
+    x_json_string = json.dumps(x_json, separators=(",", ":"))
 
     # Check if bivariate (Y filters provided)
     y_json_string = None
@@ -85,11 +89,10 @@ def data(
         y_json_string = json.dumps(y_json, separators=(",", ":"))
 
     # Determine API endpoint
-    endpoint = (
-        f"{BASE_API_ENDPOINT}get_x_data/items.json"
-        if not y_source
-        else f"{BASE_API_ENDPOINT}get_xy_data/items.json"
-    )
+    if not y_source:
+        endpoint = f"{BASE_API_ENDPOINT}get_x_data/items.json"
+    else:
+        endpoint = f"{BASE_API_ENDPOINT}get_xy_data/items.json"
 
     # Prepare query parameters
     query_params = {
@@ -97,13 +100,11 @@ def data(
         "limit": limit,
         "X_JSON": x_json_string,
     }
-
     if y_source:
         query_params["_predictor_year"] = str(year)
         query_params["_outcome_year"] = str(year)
     else:
         query_params["_year"] = str(year)
-
     if y_json_string:
         query_params["Y_JSON"] = y_json_string
 
@@ -118,9 +119,50 @@ def data(
     # Parse response and convert to DataFrame
     df = pd.DataFrame(response.json())
 
+    # --- Duplicate checking with informative messaging ---
+    # Group by 'geo' and count unique values in the 'x' column.
+    grouped = df.groupby("geo")
+    distinct_x = grouped["x"].nunique()
+    x_issue = (distinct_x > 1).any()
+
+    # Check for duplicate 'y' values if the 'y' column exists.
+    y_issue = False
+    if "y" in df.columns:
+        distinct_y = grouped["y"].nunique()
+        y_issue = (distinct_y > 1).any()
+
+    if x_issue or y_issue:
+        msg = (
+            "The API returned duplicate values for some geographic regions. This likely indicates "
+            "that not all necessary filters were specified for the data source(s)."
+        )
+        if x_issue:
+            msg += (
+                f"\n\nFor the 'x' variable: please check the 'x_filters' argument provided to data() "
+                f"for the data source '{x_source}'.\nYou can review the available filters by running:\n"
+                f"  mi.source_filters(source_name='{x_source}', year={year}, level='{level}')"
+            )
+        if y_issue:
+            msg += (
+                f"\n\nFor the 'y' variable: please check the 'y_filters' argument provided to data() "
+                f"for the data source '{y_source}'.\nYou can review the available filters by running:\n"
+                f"  mi.source_filters(source_name='{y_source}', year={year}, level='{level}')"
+            )
+        raise ValueError(msg)
+    # --- End duplicate checking ---
+
     # Define expected columns based on whether y_source is specified
     if y_source:
-        expected_columns = ["geo", "geo_name", "geo_source", "geo_year", "predictor_year", "outcome_year", "x", "y"]
+        expected_columns = [
+            "geo",
+            "geo_name",
+            "geo_source",
+            "geo_year",
+            "predictor_year",
+            "outcome_year",
+            "x",
+            "y",
+        ]
     else:
         expected_columns = ["geo", "geo_name", "geo_source", "geo_year", "data_year", "x"]
 
@@ -134,11 +176,7 @@ def data(
         )
 
     # Rename columns to match documentation
-    rename_mapping = {
-        "predictor_year": "x_year",
-        "outcome_year": "y_year",
-        "data_year": "x_year"
-    }
+    rename_mapping = {"predictor_year": "x_year", "outcome_year": "y_year", "data_year": "x_year"}
     df.rename(columns={k: v for k, v in rename_mapping.items() if k in df.columns}, inplace=True)
 
     # Select and reorder columns
