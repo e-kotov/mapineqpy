@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import json
 from mapineqpy.config import BASE_API_ENDPOINT, USER_AGENT
+from mapineqpy import source_filters
 
 
 def data(
@@ -78,10 +79,10 @@ def data(
     # Build JSON for X filters
     x_conditions = [{"field": key, "value": value} for key, value in x_filters.items()]
     x_json = {"source": x_source, "conditions": x_conditions}
-    # Use separators to minify the JSON (i.e. remove extra whitespace)
+    # Minify JSON to remove extra whitespace/newlines
     x_json_string = json.dumps(x_json, separators=(",", ":"))
 
-    # Check if bivariate (Y filters provided)
+    # Build JSON for Y filters if provided
     y_json_string = None
     if y_source and y_filters:
         y_conditions = [{"field": key, "value": value} for key, value in y_filters.items()]
@@ -119,36 +120,63 @@ def data(
     # Parse response and convert to DataFrame
     df = pd.DataFrame(response.json())
 
-    # --- Duplicate checking with informative messaging ---
-    # Group by 'geo' and count unique values in the 'x' column.
+    # --- Duplicate checking with additional filter verification ---
     grouped = df.groupby("geo")
     distinct_x = grouped["x"].nunique()
     x_issue = (distinct_x > 1).any()
 
-    # Check for duplicate 'y' values if the 'y' column exists.
     y_issue = False
     if "y" in df.columns:
         distinct_y = grouped["y"].nunique()
         y_issue = (distinct_y > 1).any()
 
+    # Only perform additional filter checking if duplicate geos exist.
     if x_issue or y_issue:
-        msg = (
-            "The API returned duplicate values for some geographic regions. This likely indicates "
-            "that not all necessary filters were specified for the data source(s)."
-        )
+        missing_x_filters = set()
         if x_issue:
-            msg += (
-                f"\n\nFor the 'x' variable: please check the 'x_filters' argument provided to data() "
-                f"for the data source '{x_source}'.\nYou can review the available filters by running:\n"
-                f"  mi.source_filters(source_name='{x_source}', year={year}, level='{level}')"
+            # Query available filters for x_source
+            available_filters_x = source_filters(source_name=x_source, year=year, level=level)
+            # Determine fields with more than one option
+            multi_option_fields = (
+                available_filters_x.groupby("field")["value"]
+                .nunique()
             )
+            multi_option_fields = multi_option_fields[multi_option_fields > 1].index.tolist()
+            # Missing filters are those multi-option fields not provided by the user.
+            missing_x_filters = set(multi_option_fields) - set(x_filters.keys())
+
+        missing_y_filters = set()
         if y_issue:
-            msg += (
-                f"\n\nFor the 'y' variable: please check the 'y_filters' argument provided to data() "
-                f"for the data source '{y_source}'.\nYou can review the available filters by running:\n"
-                f"  mi.source_filters(source_name='{y_source}', year={year}, level='{level}')"
+            available_filters_y = source_filters(source_name=y_source, year=year, level=level)
+            multi_option_fields_y = (
+                available_filters_y.groupby("field")["value"]
+                .nunique()
             )
-        raise ValueError(msg)
+            multi_option_fields_y = multi_option_fields_y[multi_option_fields_y > 1].index.tolist()
+            missing_y_filters = set(multi_option_fields_y) - set(y_filters.keys())
+
+        if missing_x_filters or missing_y_filters:
+            msg = (
+                "The API returned duplicate values for some geographic regions. This may indicate "
+                "that not all necessary filters were specified."
+            )
+            if missing_x_filters:
+                msg += (
+                    f"\n\nFor the 'x' variable (source: '{x_source}'): "
+                    f"The following filter fields (with multiple available options) were not specified: "
+                    f"{', '.join(missing_x_filters)}. "
+                    f"You can review available filters by running:\n"
+                    f"  mi.source_filters(source_name='{x_source}', year={year}, level='{level}')"
+                )
+            if missing_y_filters:
+                msg += (
+                    f"\n\nFor the 'y' variable (source: '{y_source}'): "
+                    f"The following filter fields (with multiple available options) were not specified: "
+                    f"{', '.join(missing_y_filters)}. "
+                    f"You can review available filters by running:\n"
+                    f"  mi.source_filters(source_name='{y_source}', year={year}, level='{level}')"
+                )
+            raise ValueError(msg)
     # --- End duplicate checking ---
 
     # Define expected columns based on whether y_source is specified
@@ -166,7 +194,6 @@ def data(
     else:
         expected_columns = ["geo", "geo_name", "geo_source", "geo_year", "data_year", "x"]
 
-    # Check for missing expected columns
     missing_columns = [col for col in expected_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(
