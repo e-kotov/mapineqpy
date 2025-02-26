@@ -3,7 +3,7 @@ import pandas as pd
 import json
 from mapineqpy.config import BASE_API_ENDPOINT, USER_AGENT
 from mapineqpy import source_filters
-
+from mapineqpy.options import options
 
 def data(
     x_source, y_source=None, year=None, level=None, x_filters=None, y_filters=None, limit=2500
@@ -131,7 +131,7 @@ def data(
         y_issue = (distinct_y > 1).any()
 
     # Only perform additional filter checking if duplicate geos exist.
-    if x_issue or y_issue:
+    if not options.get("skip_filter_check", False):
         missing_x_filters = set()
         if x_issue:
             # Query available filters for x_source
