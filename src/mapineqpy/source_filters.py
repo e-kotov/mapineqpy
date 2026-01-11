@@ -14,7 +14,7 @@ def source_filters(source_name, year, level, filters=None, limit=2500):
         level (str): The NUTS level ("0", "1", "2", "3").
         filters (dict, optional): A dictionary where the keys are filter fields and
                                   values are the selected filter values. Default is None.
-        limit (int): Maximum number of results to fetch. Default is 40.
+        limit (int): Maximum number of results to fetch. Default is 2500.
 
     Returns:
         pd.DataFrame: A DataFrame with fields, labels, and their possible values for filtering:

@@ -120,8 +120,11 @@ import matplotlib.pyplot as plt
 
 import nest_asyncio
 nest_asyncio.apply()
-set_httpx_args(verify=False)
-set_requests_args(verify=False)
+# TLS certificate verification is enabled by default for both httpx and requests.
+# If you encounter certificate issues, prefer configuring a proper CA bundle
+# instead of disabling verification.
+# set_httpx_args(verify=False)
+# set_requests_args(verify=False)
 nuts = NUTS()
 nuts2 = nuts.get(spatial_type='RG', nuts_level='LEVL_2')
 ```
