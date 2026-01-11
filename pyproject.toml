@@ -31,11 +31,7 @@ dev = [
 ]
 
 docs = [
-    "sphinx",
-    "sphinx_rtd_theme",
-    "myst-parser",
-    "recommonmark",
-    "sphinx-autodoc-typehints"
+    "quartodoc"
 ]
 
 [project.urls]

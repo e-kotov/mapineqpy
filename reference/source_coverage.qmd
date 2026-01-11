@@ -1,0 +1,22 @@
+# source_coverage { #mapineqpy.source_coverage }
+
+```python
+source_coverage(source_name, limit=2500)
+```
+
+Get the NUTS level and Year coverage for a specific data source.
+
+Args:
+    source_name (str): The name of the data source.
+    limit (int): Maximum number of results to fetch. Default is 2500.
+
+Returns:
+    pd.DataFrame: A DataFrame with coverage metadata:
+        - nuts_level: NUTS level
+        - year: Year
+        - source_name: Name of the data source
+        - short_description: Short description of the data source
+        - description: Full description of the data source
+
+Example:
+    >>> mi_source_coverage("BD_HGNACE2_R3")

@@ -1,0 +1,14 @@
+# nuts_levels { #mapineqpy.nuts_levels }
+
+```python
+nuts_levels()
+```
+
+Get a list of available NUTS levels.
+
+Returns:
+    list: A list of valid NUTS levels as strings that will be accepted by other functions.
+
+Example:
+    >>> get_nuts_levels()
+    ['3', '2', '1', '0']

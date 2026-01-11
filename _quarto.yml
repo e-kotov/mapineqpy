@@ -1,0 +1,43 @@
+project:
+  type: website
+
+website:
+  title: "mapineqpy"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: reference/index.qmd
+        text: API Reference
+    right:
+      - icon: github
+        href: "https://github.com/e-kotov/mapineqpy"
+
+metadata-files:
+  - "reference/_sidebar.yml"
+
+format:
+  html:
+    default-image-extension: ""
+    theme: cosmo
+    css:
+      - "reference/_styles-quartodoc.css"
+
+quartodoc:
+  package: mapineqpy
+  dir: reference
+  sidebar: reference/_sidebar.yml
+  css: reference/_styles-quartodoc.css
+  sections:
+    - title: "Core Functions"
+      desc: "Functions for accessing Mapineq API."
+      contents:
+        - sources
+        - source_coverage
+        - source_filters
+        - data
+        - nuts_levels
+    - title: "Options"
+      desc: "Configuration options."
+      contents:
+        - options

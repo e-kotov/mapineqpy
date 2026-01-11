@@ -1,0 +1,75 @@
+# data { #mapineqpy.data }
+
+`data`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [data](#mapineqpy.data.data) | Fetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters. |
+
+### data { #mapineqpy.data.data }
+
+```python
+data.data(
+    x_source,
+    y_source=None,
+    year=None,
+    level=None,
+    x_filters=None,
+    y_filters=None,
+    limit=2500,
+)
+```
+
+Fetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.
+
+Args:
+    x_source (str): Source name for the x variable.
+    y_source (str, optional): Source name for the y variable. Default is None.
+    year (int): The year for data.
+    level (str): The NUTS level ("0", "1", "2", "3").
+    x_filters (dict): Filters for the x variable as a dictionary of field-value pairs.
+    y_filters (dict, optional): Filters for the y variable as a dictionary of field-value pairs. Default is None.
+    limit (int): Maximum number of results to return. Default is 2500. This default should be enough for most uses,
+                 as it is well above the number of NUTS 3 regions in the EU. The maximum allowed by the API is 10,000.
+
+Returns:
+    pd.DataFrame: A DataFrame containing univariate or bivariate data with the following columns:
+
+    - `geo` (str): (NUTS) region code at the requested level.
+    - `geo_name` (str): Name of the (NUTS) region.
+    - `geo_source` (str): Source type of the spatial units (e.g., "NUTS").
+    - `geo_year` (int): Year of the (NUTS) region classification.
+    - `x_year` (int): The year of the predictor variable (X) (renamed from `predictor_year` or `data_year`).
+    - `y_year` (int, optional): The year of the outcome variable (Y) (renamed from `outcome_year`).
+    - `x` (float): The value of the univariate variable.
+    - `y` (float, optional): The value of the y variable (only included when `y_source` is provided).
+
+Notes:
+    - If `y_source` is **not** provided, the returned DataFrame contains only univariate data (`x`).
+    - If `y_source` **is** provided, the returned DataFrame includes both predictor (`x`) and outcome (`y`) variables.
+    - Some regions may have missing (`NaN`) values for `x` or `y`, indicating unavailable data.
+
+Example:
+    # Univariate example
+    >>> import mapineqpy as mi
+    >>> mi.data(
+    ...     x_source="TGS00010",
+    ...     year=2020,
+    ...     level="2",
+    ...     x_filters={"isced11": "TOTAL", "unit": "PC", "age": "Y_GE15", "freq": "A"}
+    ... )
+
+    # Bivariate example
+    >>> import mapineqpy as mi
+    >>> mi.data(
+    ...     x_source="TGS00010",
+    ...     y_source="DEMO_R_MLIFEXP",
+    ...     year=2020,
+    ...     level="2",
+    ...     x_filters={"isced11": "TOTAL", "unit": "PC", "age": "Y_GE15", "freq": "A"},
+    ...     y_filters={"unit": "YR", "age": "Y_LT1", "freq": "A"}
+    ... )
