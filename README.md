@@ -16,10 +16,8 @@ API](https://www.mapineq.org/data-users/) and
 <https://github.com/e-kotov/mapineqr> and
 <https://www.ekotov.pro/mapineqr>.
 
-You can read the docs for all functions in this draft documentation
-page:
-<https://www.ekotov.pro/mapineqpy/mapineqpy.html#module-mapineqpy>. Help
-is needed to make it look good, I’m no expert with sphinx.
+You can read the docs for all functions at:
+<https://www.ekotov.pro/mapineqpy/>.
 
 For now it is better to just read the rest of this readme to see the
 example usage of all functions.
@@ -126,8 +124,11 @@ import matplotlib.pyplot as plt
 
 import nest_asyncio
 nest_asyncio.apply()
-set_httpx_args(verify=False)
-set_requests_args(verify=False)
+# TLS certificate verification is enabled by default for both httpx and requests.
+# If you encounter certificate issues, prefer configuring a proper CA bundle
+# instead of disabling verification.
+# set_httpx_args(verify=False)
+# set_requests_args(verify=False)
 nuts = NUTS()
 nuts2 = nuts.get(spatial_type='RG', nuts_level='LEVL_2')
 ```
@@ -144,10 +145,10 @@ nuts2 = nuts2.merge(data, left_on="NUTS_ID", right_on="geo", how="left")
 fig, ax = plt.subplots(1, 1, figsize=(10, 8))
 nuts2.plot(column="x", ax=ax, legend=True, cmap="viridis", edgecolor="black")
 plt.title("Number of burglaries in 2010")
-plt.savefig("docs/figures/map_burglaries.png", dpi=300)
+plt.savefig("figures/map_burglaries.png", dpi=300)
 ```
 
-![Map of Burglaries](docs/figures/map_burglaries.png)
+![Map of Burglaries](figures/map_burglaries.png)
 
 ## Advanced Example - Bivariate Data and Maps
 
@@ -191,11 +192,10 @@ plt.ylabel("Life Expectancy")
 plt.title("Unemployment vs Life Expectancy")
 
 # Save the plot
-plt.savefig("docs/figures/edu_vs_life_exp_plot.png", dpi=300)
+plt.savefig("figures/edu_vs_life_exp_plot.png", dpi=300)
 ```
 
-![Unemployment vs Life
-Expectancy](docs/figures/edu_vs_life_exp_plot.png)
+![Unemployment vs Life Expectancy](figures/edu_vs_life_exp_plot.png)
 
 3.  Add the bivariate data to the NUTS2 polygons and create a map:
 
@@ -276,10 +276,10 @@ legend_ax.axis("off")  # Turn off the axis for a clean legend
 
 # Save the map
 # plt.savefig("bivariate_choropleth_with_legend.png", dpi=300)
-plt.savefig("docs/figures/edu_vs_life_exp_map.png", dpi=300)
+plt.savefig("figures/edu_vs_life_exp_map.png", dpi=300)
 ```
 
-![Unemployment vs Life Expectancy](docs/figures/edu_vs_life_exp_map.png)
+![Unemployment vs Life Expectancy](figures/edu_vs_life_exp_map.png)
 
 ## Citation
 
