@@ -32,7 +32,14 @@ dev = [
 
 docs = [
     "quartodoc",
-    "jupyter"
+    "jupyter",
+    "gisco_geodata",
+    "eurostat",
+    "geopandas",
+    "matplotlib",
+    "nest_asyncio",
+    "seaborn",
+    "mapclassify"
 ]
 
 [project.urls]
