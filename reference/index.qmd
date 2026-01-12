@@ -1,0 +1,21 @@
+# Function reference {.doc .doc-index}
+
+## Core Functions
+
+Functions for accessing Mapineq API.
+
+| | |
+| --- | --- |
+| [sources](sources.qmd#mapineqpy.sources) |  |
+| [source_coverage](source_coverage.qmd#mapineqpy.source_coverage) | Get the NUTS level and Year coverage for a specific data source. |
+| [source_filters](source_filters.qmd#mapineqpy.source_filters) |  |
+| [data](data.qmd#mapineqpy.data) |  |
+| [nuts_levels](nuts_levels.qmd#mapineqpy.nuts_levels) | Get a list of available NUTS levels. |
+
+## Options
+
+Configuration options.
+
+| | |
+| --- | --- |
+| [options](options.qmd#mapineqpy.options) |  |

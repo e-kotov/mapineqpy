@@ -1,0 +1,58 @@
+# sources { #mapineqpy.sources }
+
+`sources`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [source_coverage](#mapineqpy.sources.source_coverage) | Get the NUTS level and Year coverage for a specific data source. |
+| [sources](#mapineqpy.sources.sources) | Get a list of available data sources. |
+
+### source_coverage { #mapineqpy.sources.source_coverage }
+
+```python
+sources.source_coverage(source_name, limit=2500)
+```
+
+Get the NUTS level and Year coverage for a specific data source.
+
+Args:
+    source_name (str): The name of the data source.
+    limit (int): Maximum number of results to fetch. Default is 2500.
+
+Returns:
+    pd.DataFrame: A DataFrame with coverage metadata:
+        - nuts_level: NUTS level
+        - year: Year
+        - source_name: Name of the data source
+        - short_description: Short description of the data source
+        - description: Full description of the data source
+
+Example:
+    >>> mi_source_coverage("BD_HGNACE2_R3")
+
+### sources { #mapineqpy.sources.sources }
+
+```python
+sources.sources(level, year=None, limit=2500)
+```
+
+Get a list of available data sources.
+
+Args:
+    level (str): A string specifying the NUTS level ("0", "1", "2", "3").
+    year (int, optional): An integer specifying the year. Default is None.
+    limit (int): Maximum number of results to fetch. Default is 2500.
+
+Returns:
+    pd.DataFrame: A DataFrame with source metadata, containing:
+        - source_name: Name of the data source
+        - short_description: Short description of the data source
+        - description: Full description of the data source
+
+Example:
+    >>> mi_sources("3", limit=10)
+    >>> mi_sources("3", year=2020)

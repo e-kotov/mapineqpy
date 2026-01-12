@@ -1,24 +1,16 @@
 ---
 title: mapineqpy
-format: gfm
-execute: 
+execute:
   message: false
   warning: false
 eval: false
 ---
-
-<!-- README.md is generated from README.qmd. Please edit that file -->
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of `mapineqpy` is to access the data from the [Mapineq.org API](https://www.mapineq.org/data-users/) and [dashboard](https://dashboard.mapineq.org/datacatalogue) (product of the [Mapineq](https://mapineq.eu/) project). For R package, see [https://github.com/e-kotov/mapineqr](https://github.com/e-kotov/mapineqr) and [https://www.ekotov.pro/mapineqr](https://www.ekotov.pro/mapineqr).
-
-You can read the docs for all functions in this draft documentation page: [https://www.ekotov.pro/mapineqpy/mapineqpy.html#module-mapineqpy](https://www.ekotov.pro/mapineqpy/mapineqpy.html#module-mapineqpy). Help is needed to make it look good, I'm no expert with sphinx.
-
-For now it is better to just read the rest of this readme to see the example usage of all functions.
-
 
 ## Installation
 
