@@ -54,5 +54,5 @@ Returns:
         - description: Full description of the data source
 
 Example:
-    >>> mi_sources("3", limit=10)
-    >>> mi_sources("3", year=2020)
+    >>> mi.sources("3", limit=10)
+    >>> mi.sources("3", year=2020)
