@@ -39,25 +39,28 @@ def data(
         - Some regions may have missing (`NaN`) values for `x` or `y`, indicating unavailable data.
 
     Example:
-        # Univariate example
-        >>> import mapineqpy as mi
-        >>> mi.data(
-        ...     x_source="TGS00010",
-        ...     year=2020,
-        ...     level="2",
-        ...     x_filters={"isced11": "TOTAL", "unit": "PC", "age": "Y_GE15", "freq": "A"}
-        ... )
 
-        # Bivariate example
-        >>> import mapineqpy as mi
-        >>> mi.data(
-        ...     x_source="TGS00010",
-        ...     y_source="DEMO_R_MLIFEXP",
-        ...     year=2020,
-        ...     level="2",
-        ...     x_filters={"isced11": "TOTAL", "unit": "PC", "age": "Y_GE15", "freq": "A"},
-        ...     y_filters={"unit": "YR", "age": "Y_LT1", "freq": "A"}
-        ... )
+    ```python
+    # Univariate example
+    import mapineqpy as mi
+    mi.data(
+        x_source="TGS00010",
+        year=2020,
+        level="2",
+        x_filters={"isced11": "TOTAL", "unit": "PC", "age": "Y_GE15", "freq": "A"}
+    )
+
+    # Bivariate example
+    import mapineqpy as mi
+    mi.data(
+        x_source="TGS00010",
+        y_source="DEMO_R_MLIFEXP",
+        year=2020,
+        level="2",
+        x_filters={"isced11": "TOTAL", "unit": "PC", "age": "Y_GE15", "freq": "A"},
+        y_filters={"unit": "YR", "age": "Y_LT1", "freq": "A"}
+    )
+    ```
     """
     if x_filters is None:
         x_filters = {}

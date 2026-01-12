@@ -166,3 +166,8 @@ cython_debug/
 *.egg-info
 
 private
+reference/
+!reference/_styles-quartodoc.css
+objects.json
+/.quarto/
+_site/

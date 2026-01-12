@@ -12,4 +12,5 @@ __all__ = [
     "source_coverage",
     "source_filters",
     "data",
+    "options",
 ]

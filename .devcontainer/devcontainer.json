@@ -1,0 +1,15 @@
+{
+  "name": "mapineqpy-dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "quarto.quarto"
+      ]
+    }
+  },
+  "postCreateCommand": "uv sync --all-extras"
+}

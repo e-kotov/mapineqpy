@@ -11,8 +11,11 @@ def nuts_levels():
         list: A list of valid NUTS levels as strings that will be accepted by other functions.
 
     Example:
-        >>> get_nuts_levels()
-        ['3', '2', '1', '0']
+
+    ```python
+    mi.nuts_levels()
+    # ['3', '2', '1', '0']
+    ```
     """
     # Construct the full URL
     url_endpoint = f"{BASE_API_ENDPOINT}get_levels/items.json"
