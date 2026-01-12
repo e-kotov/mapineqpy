@@ -169,3 +169,4 @@ private
 reference/
 !reference/_styles-quartodoc.css
 objects.json
+/.quarto/
