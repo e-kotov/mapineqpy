@@ -31,7 +31,8 @@ dev = [
 ]
 
 docs = [
-    "quartodoc"
+    "quartodoc",
+    "jupyter"
 ]
 
 [project.urls]
