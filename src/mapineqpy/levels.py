@@ -12,10 +12,10 @@ def nuts_levels():
 
     Example:
 
-        ```python
-        mi.nuts_levels()
-        # ['3', '2', '1', '0']
-        ```
+    ```python
+    mi.nuts_levels()
+    # ['3', '2', '1', '0']
+    ```
     """
     # Construct the full URL
     url_endpoint = f"{BASE_API_ENDPOINT}get_levels/items.json"

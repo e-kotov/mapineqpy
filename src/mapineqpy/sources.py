@@ -20,10 +20,10 @@ def sources(level, year=None, limit=2500):
 
     Example:
 
-        ```python
-        mi.sources("3", limit=10)
-        mi.sources("3", year=2020)
-        ```
+    ```python
+    mi.sources("3", limit=10)
+    mi.sources("3", year=2020)
+    ```
     """
     if level not in ["0", "1", "2", "3"]:
         raise ValueError(f"Invalid level: {level}. Must be one of '0', '1', '2', '3'.")
@@ -76,9 +76,9 @@ def source_coverage(source_name, limit=2500):
 
     Example:
 
-        ```python
-        mi.source_coverage("BD_HGNACE2_R3")
-        ```
+    ```python
+    mi.source_coverage("BD_HGNACE2_R3")
+    ```
     """
     endpoint = f"{BASE_API_ENDPOINT}get_year_nuts_level_from_source/items.json"
     query_params = {"_resource": source_name, "limit": limit}
