@@ -1,0 +1,190 @@
+[
+  {
+    "objectID": "reference/options.html",
+    "href": "reference/options.html",
+    "title": "options",
+    "section": "",
+    "text": "options\nConfiguration options for mapineqpy.\nThis module provides a global options dictionary that allows users to configure the behavior of the library at runtime.\nKeys: skip_filter_check (bool): If True, skips the additional validation step in mi.data() that checks for duplicate geographic regions (which usually indicate missing filters). Default is False.\nExample:\nimport mapineqpy as mi\n\n# Disable the filter check\nmi.options[\"skip_filter_check\"] = True\n\n\n\n\n\nName\nDescription\n\n\n\n\noptions\nA dictionary for global configuration options.",
+    "crumbs": [
+      "API Reference",
+      "Options",
+      "options"
+    ]
+  },
+  {
+    "objectID": "reference/options.html#attributes",
+    "href": "reference/options.html#attributes",
+    "title": "options",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\noptions\nA dictionary for global configuration options.",
+    "crumbs": [
+      "API Reference",
+      "Options",
+      "options"
+    ]
+  },
+  {
+    "objectID": "reference/source_coverage.html",
+    "href": "reference/source_coverage.html",
+    "title": "source_coverage",
+    "section": "",
+    "text": "source_coverage\nsource_coverage(source_name, limit=2500)\nGet the NUTS level and Year coverage for a specific data source.\nArgs: source_name (str): The name of the data source. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with coverage metadata: - nuts_level: NUTS level - year: Year - source_name: Name of the data source - short_description: Short description of the data source - description: Full description of the data source\nExample:\nmi.source_coverage(\"BD_HGNACE2_R3\")",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "source_coverage"
+    ]
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Function reference",
+    "section": "",
+    "text": "Functions for accessing Mapineq API.\n\n\n\nsources\n\n\n\nsource_coverage\nGet the NUTS level and Year coverage for a specific data source.\n\n\nsource_filters\n\n\n\ndata\n\n\n\nnuts_levels\nGet a list of available NUTS levels.\n\n\n\n\n\n\nConfiguration options.\n\n\n\noptions\nConfiguration options for mapineqpy.",
+    "crumbs": [
+      "API Reference",
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/index.html#core-functions",
+    "href": "reference/index.html#core-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "Functions for accessing Mapineq API.\n\n\n\nsources\n\n\n\nsource_coverage\nGet the NUTS level and Year coverage for a specific data source.\n\n\nsource_filters\n\n\n\ndata\n\n\n\nnuts_levels\nGet a list of available NUTS levels.",
+    "crumbs": [
+      "API Reference",
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/index.html#options",
+    "href": "reference/index.html#options",
+    "title": "Function reference",
+    "section": "",
+    "text": "Configuration options.\n\n\n\noptions\nConfiguration options for mapineqpy.",
+    "crumbs": [
+      "API Reference",
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/data.html",
+    "href": "reference/data.html",
+    "title": "data",
+    "section": "",
+    "text": "data\n\n\n\n\n\nName\nDescription\n\n\n\n\ndata\nFetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.\n\n\n\n\n\ndata.data(\n    x_source,\n    y_source=None,\n    year=None,\n    level=None,\n    x_filters=None,\n    y_filters=None,\n    limit=2500,\n)\nFetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.\nArgs: x_source (str): Source name for the x variable. y_source (str, optional): Source name for the y variable. Default is None. year (int): The year for data. level (str): The NUTS level (“0”, “1”, “2”, “3”). x_filters (dict): Filters for the x variable as a dictionary of field-value pairs. y_filters (dict, optional): Filters for the y variable as a dictionary of field-value pairs. Default is None. limit (int): Maximum number of results to return. Default is 2500. This default should be enough for most uses, as it is well above the number of NUTS 3 regions in the EU. The maximum allowed by the API is 10,000.\nReturns: pd.DataFrame: A DataFrame containing univariate or bivariate data with the following columns:\n- `geo` (str): (NUTS) region code at the requested level.\n- `geo_name` (str): Name of the (NUTS) region.\n- `geo_source` (str): Source type of the spatial units (e.g., \"NUTS\").\n- `geo_year` (int): Year of the (NUTS) region classification.\n- `x_year` (int): The year of the predictor variable (X) (renamed from `predictor_year` or `data_year`).\n- `y_year` (int, optional): The year of the outcome variable (Y) (renamed from `outcome_year`).\n- `x` (float): The value of the univariate variable.\n- `y` (float, optional): The value of the y variable (only included when `y_source` is provided).\nNotes: - If y_source is not provided, the returned DataFrame contains only univariate data (x). - If y_source is provided, the returned DataFrame includes both predictor (x) and outcome (y) variables. - Some regions may have missing (NaN) values for x or y, indicating unavailable data.\nExample:\n# Univariate example\nimport mapineqpy as mi\nmi.data(\n    x_source=\"TGS00010\",\n    year=2020,\n    level=\"2\",\n    x_filters={\"isced11\": \"TOTAL\", \"unit\": \"PC\", \"age\": \"Y_GE15\", \"freq\": \"A\"}\n)\n\n# Bivariate example\nimport mapineqpy as mi\nmi.data(\n    x_source=\"TGS00010\",\n    y_source=\"DEMO_R_MLIFEXP\",\n    year=2020,\n    level=\"2\",\n    x_filters={\"isced11\": \"TOTAL\", \"unit\": \"PC\", \"age\": \"Y_GE15\", \"freq\": \"A\"},\n    y_filters={\"unit\": \"YR\", \"age\": \"Y_LT1\", \"freq\": \"A\"}\n)",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "data"
+    ]
+  },
+  {
+    "objectID": "reference/data.html#functions",
+    "href": "reference/data.html#functions",
+    "title": "data",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\ndata\nFetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.\n\n\n\n\n\ndata.data(\n    x_source,\n    y_source=None,\n    year=None,\n    level=None,\n    x_filters=None,\n    y_filters=None,\n    limit=2500,\n)\nFetch univariate or bivariate data for a specific source, year, NUTS level, and selected filters.\nArgs: x_source (str): Source name for the x variable. y_source (str, optional): Source name for the y variable. Default is None. year (int): The year for data. level (str): The NUTS level (“0”, “1”, “2”, “3”). x_filters (dict): Filters for the x variable as a dictionary of field-value pairs. y_filters (dict, optional): Filters for the y variable as a dictionary of field-value pairs. Default is None. limit (int): Maximum number of results to return. Default is 2500. This default should be enough for most uses, as it is well above the number of NUTS 3 regions in the EU. The maximum allowed by the API is 10,000.\nReturns: pd.DataFrame: A DataFrame containing univariate or bivariate data with the following columns:\n- `geo` (str): (NUTS) region code at the requested level.\n- `geo_name` (str): Name of the (NUTS) region.\n- `geo_source` (str): Source type of the spatial units (e.g., \"NUTS\").\n- `geo_year` (int): Year of the (NUTS) region classification.\n- `x_year` (int): The year of the predictor variable (X) (renamed from `predictor_year` or `data_year`).\n- `y_year` (int, optional): The year of the outcome variable (Y) (renamed from `outcome_year`).\n- `x` (float): The value of the univariate variable.\n- `y` (float, optional): The value of the y variable (only included when `y_source` is provided).\nNotes: - If y_source is not provided, the returned DataFrame contains only univariate data (x). - If y_source is provided, the returned DataFrame includes both predictor (x) and outcome (y) variables. - Some regions may have missing (NaN) values for x or y, indicating unavailable data.\nExample:\n# Univariate example\nimport mapineqpy as mi\nmi.data(\n    x_source=\"TGS00010\",\n    year=2020,\n    level=\"2\",\n    x_filters={\"isced11\": \"TOTAL\", \"unit\": \"PC\", \"age\": \"Y_GE15\", \"freq\": \"A\"}\n)\n\n# Bivariate example\nimport mapineqpy as mi\nmi.data(\n    x_source=\"TGS00010\",\n    y_source=\"DEMO_R_MLIFEXP\",\n    year=2020,\n    level=\"2\",\n    x_filters={\"isced11\": \"TOTAL\", \"unit\": \"PC\", \"age\": \"Y_GE15\", \"freq\": \"A\"},\n    y_filters={\"unit\": \"YR\", \"age\": \"Y_LT1\", \"freq\": \"A\"}\n)",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "data"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "mapineqpy",
+    "section": "",
+    "text": "The goal of mapineqpy is to access the data from the Mapineq.org API and dashboard (product of the Mapineq project). For R package, see https://github.com/e-kotov/mapineqr and https://www.ekotov.pro/mapineqr."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "mapineqpy",
+    "section": "Installation",
+    "text": "Installation\nInstall the development version of mapineqpy from GitHub:\npip install git+https://github.com/e-kotov/mapineqpy.git"
+  },
+  {
+    "objectID": "index.html#basic-example---univariate-data-and-maps",
+    "href": "index.html#basic-example---univariate-data-and-maps",
+    "title": "mapineqpy",
+    "section": "Basic Example - Univariate Data and Maps",
+    "text": "Basic Example - Univariate Data and Maps\n\nGet the full list of available data at NUTS 3 level:\n\n\nimport mapineqpy as mi\n\navailable_data = mi.sources(level=\"3\")\nprint(available_data.head())\n\n     source_name     short_description                                        description\n0   DEMO_R_D3AREA       Area of regions                      Area by NUTS 3 region (ESTAT)\n1  PROJ_19RAASFR3  Fertility assumption  Assumptions for fertility rates by age, type o...\n2  PROJ_19RAASMR3     Death assumptions  Assumptions for probability of dying by age, s...\n3   BD_HGNACE2_R3  Business demography   Business demography and high growth enterprise...\n4      BD_SIZE_R3  Business demography   Business demography by size class and NUTS 3 r...\n\nSelect data source by source_name column and check its year and NUTS level coverage:\n\n\ncoverage = mi.source_coverage(\"CRIM_GEN_REG\")\nprint(coverage)\n\nnuts_level  year   source_name short_description                                        description\n0           0  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n1           0  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n2           0  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n3           1  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n4           1  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n5           1  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n6           2  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n7           2  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n8           2  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n9           3  2008  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n10          3  2009  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n11          3  2010  CRIM_GEN_REG   Settlement type  Satellite-based settlement types based on imagery\n\nCheck the available filters for the data source:\n\n\nfilters = mi.source_filters(\"CRIM_GEN_REG\", year=2010, level=\"2\")\nprint(filters)\n\n field                                        field_label                                     label       value\n0  unit                                    Unit of measure                                    Number          NR\n1  freq                                     Time frequency                                    Annual           A\n2  iccs  International classification of crime for stat...                      Intentional homicide    ICCS0101\n3  iccs  International classification of crime for stat...                                   Robbery    ICCS0401\n4  iccs  International classification of crime for stat...  Burglary of private residential premises   ICCS05012\n5  iccs  International classification of crime for stat...         Theft of a motorized land vehicle  ICCS050211\n\nChoose the indicator to filter (let it be burglaries) and get the data:\n\n\ndata = mi.data(\n    x_source=\"CRIM_GEN_REG\",\n    year=2010,\n    level=\"2\",\n    x_filters={\"iccs\": \"ICCS05012\"}\n)\nprint(data.head())\n\n  geo          geo_name best_year       x\n0  AT11    Burgenland (A)      2008   223.0\n1  AT12  Niederösterreich      2008  2557.0\n2  AT13              Wien      2008  9319.0\n3  AT21           Kärnten      2008   507.0\n4  AT22        Steiermark      2008  1163.0\n\nMap the indicator using NUTS2 polygons:\n\n5.1 Get the NUTS2 level data:\n\nfrom gisco_geodata import (\n    NUTS,\n    set_httpx_args\n)\nfrom eurostat import (\n    get_data_df,\n    get_toc_df,\n    set_requests_args\n)\nimport geopandas as gpd\nimport matplotlib.pyplot as plt\n\nimport nest_asyncio\nnest_asyncio.apply()\n# TLS certificate verification is enabled by default for both httpx and requests.\n# If you encounter certificate issues, prefer configuring a proper CA bundle\n# instead of disabling verification.\n# set_httpx_args(verify=False)\n# set_requests_args(verify=False)\nnuts = NUTS()\nnuts2 = nuts.get(spatial_type='RG', nuts_level='LEVL_2')\n\n5.2 Join the data with NUTS2 polygons and plot a map:\n\nimport matplotlib.pyplot as plt\n\n# Join the data with NUTS2 polygons\nnuts2 = nuts2.merge(data, left_on=\"NUTS_ID\", right_on=\"geo\", how=\"left\")\n\n# Plot a map of burglaries\nfig, ax = plt.subplots(1, 1, figsize=(10, 8))\nnuts2.plot(column=\"x\", ax=ax, legend=True, cmap=\"viridis\", edgecolor=\"black\")\nplt.title(\"Number of burglaries in 2010\")\nplt.savefig(\"figures/map_burglaries.png\", dpi=300)\n\n\n\n\nMap of Burglaries"
+  },
+  {
+    "objectID": "index.html#advanced-example---bivariate-data-and-maps",
+    "href": "index.html#advanced-example---bivariate-data-and-maps",
+    "title": "mapineqpy",
+    "section": "Advanced Example - Bivariate Data and Maps",
+    "text": "Advanced Example - Bivariate Data and Maps\n\nGet the data for two indicators (e.g., unemployment rate and life expectancy):\n\n\nxy_data = mi.data(\n    year=2018,\n    level=\"2\",\n    x_source=\"TGS00010\",\n    x_filters={\"isced11\": \"TOTAL\", \"unit\": \"PC\", \"age\": \"Y_GE15\", \"sex\": \"T\", \"freq\": \"A\"},\n    y_source=\"DEMO_R_MLIFEXP\",\n    y_filters={\"unit\": \"YR\", \"age\": \"Y_LT1\", \"sex\": \"T\", \"freq\": \"A\"}\n)\nprint(xy_data.head())\n\n   geo          geo_name best_year    x     y\n0  AL01              Veri      2018  NaN   NaN\n1  AL02            Qender      2018  NaN   NaN\n2  AL03               Jug      2018  NaN   NaN\n3  AT11        Burgenland      2018  4.2  81.5\n4  AT12  Niederösterreich      2018  3.8  81.5\n\nPlot a scatterplot:\n\n\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n# Start a new figure\nplt.figure()\n\n# Create the scatterplot\nsns.scatterplot(data=xy_data, x=\"x\", y=\"y\")\n\n# Add labels and title\nplt.xlabel(\"Unemployment Rate (%)\")\nplt.ylabel(\"Life Expectancy\")\nplt.title(\"Unemployment vs Life Expectancy\")\n\n# Save the plot\nplt.savefig(\"figures/edu_vs_life_exp_plot.png\", dpi=300)\n\n\n\n\nUnemployment vs Life Expectancy\n\n\n\nAdd the bivariate data to the NUTS2 polygons and create a map:\n\n\nnuts2 = nuts.get(spatial_type='RG', nuts_level='LEVL_2')\nnuts2 = nuts2.merge(xy_data, left_on=\"NUTS_ID\", right_on=\"geo\", how=\"left\")\n\nThanks to https://github.com/mikhailsirenko/bivariate-choropleth for the code for bivariate map.\n\nfrom mapclassify import Quantiles\nfrom sklearn.preprocessing import MinMaxScaler\nimport numpy as np\nfrom matplotlib.colors import ListedColormap\n\n# Initialize MinMaxScaler\nscaler = MinMaxScaler()\n\n# Scale the `x` and `y` variables\nnuts2['x_scaled'] = scaler.fit_transform(nuts2[['x']])\nnuts2['y_scaled'] = scaler.fit_transform(nuts2[['y']])\n\n\nimport matplotlib.pyplot as plt\nimport matplotlib.colors as mcolors\nimport pandas as pd\n\n# Define the bivariate colormap\nall_colors = [\n    \"#e8e8e8\", \"#b0d5df\", \"#64acbe\",  # Low Y (1st row)\n    \"#e4acac\", \"#ad9ea5\", \"#627f8c\",  # Mid Y (2nd row)\n    \"#c85a5a\", \"#985356\", \"#574249\",  # High Y (3rd row)\n]\ncmap = mcolors.ListedColormap(all_colors)\n\n# Binning variables for bivariate classification\nbins = [0, 0.33, 0.66, 1]\nnuts2['Var1_Class'] = pd.cut(nuts2['x_scaled'], bins=bins, labels=[\"1\", \"2\", \"3\"], include_lowest=True)\nnuts2['Var2_Class'] = pd.cut(nuts2['y_scaled'], bins=bins, labels=[\"A\", \"B\", \"C\"], include_lowest=True)\nnuts2['Bi_Class'] = nuts2['Var1_Class'].astype(str) + nuts2['Var2_Class'].astype(str)\n\n# Filter the colormap to match present classes\npresent_classes = nuts2['Bi_Class'].unique()\nfiltered_colors = [\n    color for cls, color in zip(\n        ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C'], all_colors\n    ) if cls in present_classes\n]\nfiltered_cmap = mcolors.ListedColormap(filtered_colors)\n\n# Plot the bivariate map\nfig, ax = plt.subplots(1, 1, figsize=(10, 8))\nnuts2.plot(column=\"Bi_Class\", ax=ax, cmap=filtered_cmap, edgecolor=\"black\", legend=False)\nplt.title(\"Bivariate Choropleth: Unemployment vs Life Expectancy (2018)\")\n\n# Add the bivariate legend\nlegend_ax = fig.add_axes([0.3, 0.1, 0.2, 0.2])  # Position and size of the legend\nlegend_ax.set_xlim(0, 3)\nlegend_ax.set_ylim(0, 3)\n\n# Draw legend squares\nfor i in range(3):\n    for j in range(3):\n        legend_ax.add_patch(plt.Rectangle((i, j), 1, 1, color=all_colors[i * 3 + j]))\n\n# Add arrows for axes\nlegend_ax.annotate(\"\", xy=(3, 0), xytext=(0, 0), arrowprops=dict(arrowstyle=\"-&gt;\", lw=1))\nlegend_ax.annotate(\"\", xy=(0, 3), xytext=(0, 0), arrowprops=dict(arrowstyle=\"-&gt;\", lw=1))\n\n# Add axis labels\nlegend_ax.text(3.5, 0, \"Higher Unemployment\", va=\"center\", fontsize=12)\nlegend_ax.text(.2, 3.5, \"Higher Life Expectancy\", ha=\"center\", fontsize=12, rotation=0)\n\nlegend_ax.axis(\"off\")  # Turn off the axis for a clean legend\n\n# Save the map\n# plt.savefig(\"bivariate_choropleth_with_legend.png\", dpi=300)\nplt.savefig(\"figures/edu_vs_life_exp_map.png\", dpi=300)\n\n\n\n\nUnemployment vs Life Expectancy"
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "mapineqpy",
+    "section": "Citation",
+    "text": "Citation\nTo cite mapineqpy and the data/API, please use:\nKotov E. “mapineqpy: A Python package for accessing Mapineq API data.” 2024. Available at: https://github.com/e-kotov/mapineqpy\nMills M, Leasure D (2024). “Mapineq Link: Geospatial Dashboard and Database.” doi:10.5281/zenodo.13864000 https://doi.org/10.5281/zenodo.13864000."
+  },
+  {
+    "objectID": "reference/sources.html",
+    "href": "reference/sources.html",
+    "title": "sources",
+    "section": "",
+    "text": "sources\n\n\n\n\n\nName\nDescription\n\n\n\n\nsource_coverage\nGet the NUTS level and Year coverage for a specific data source.\n\n\nsources\nGet a list of available data sources.\n\n\n\n\n\nsources.source_coverage(source_name, limit=2500)\nGet the NUTS level and Year coverage for a specific data source.\nArgs: source_name (str): The name of the data source. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with coverage metadata: - nuts_level: NUTS level - year: Year - source_name: Name of the data source - short_description: Short description of the data source - description: Full description of the data source\nExample:\nmi.source_coverage(\"BD_HGNACE2_R3\")\n\n\n\nsources.sources(level, year=None, limit=2500)\nGet a list of available data sources.\nArgs: level (str): A string specifying the NUTS level (“0”, “1”, “2”, “3”). year (int, optional): An integer specifying the year. Default is None. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with source metadata, containing: - source_name: Name of the data source - short_description: Short description of the data source - description: Full description of the data source\nExample:\nmi.sources(\"3\", limit=10)\nmi.sources(\"3\", year=2020)",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "sources"
+    ]
+  },
+  {
+    "objectID": "reference/sources.html#functions",
+    "href": "reference/sources.html#functions",
+    "title": "sources",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nsource_coverage\nGet the NUTS level and Year coverage for a specific data source.\n\n\nsources\nGet a list of available data sources.\n\n\n\n\n\nsources.source_coverage(source_name, limit=2500)\nGet the NUTS level and Year coverage for a specific data source.\nArgs: source_name (str): The name of the data source. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with coverage metadata: - nuts_level: NUTS level - year: Year - source_name: Name of the data source - short_description: Short description of the data source - description: Full description of the data source\nExample:\nmi.source_coverage(\"BD_HGNACE2_R3\")\n\n\n\nsources.sources(level, year=None, limit=2500)\nGet a list of available data sources.\nArgs: level (str): A string specifying the NUTS level (“0”, “1”, “2”, “3”). year (int, optional): An integer specifying the year. Default is None. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with source metadata, containing: - source_name: Name of the data source - short_description: Short description of the data source - description: Full description of the data source\nExample:\nmi.sources(\"3\", limit=10)\nmi.sources(\"3\", year=2020)",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "sources"
+    ]
+  },
+  {
+    "objectID": "reference/source_filters.html",
+    "href": "reference/source_filters.html",
+    "title": "source_filters",
+    "section": "",
+    "text": "source_filters\n\n\n\n\n\nName\nDescription\n\n\n\n\nsource_filters\nFetch possible filtering values for a given source, year, and NUTS level.\n\n\n\n\n\nsource_filters.source_filters(\n    source_name,\n    year,\n    level,\n    filters=None,\n    limit=2500,\n)\nFetch possible filtering values for a given source, year, and NUTS level.\nArgs: source_name (str): The name of the data source (f_resource). year (int): The year for filtering. level (str): The NUTS level (“0”, “1”, “2”, “3”). filters (dict, optional): A dictionary where the keys are filter fields and values are the selected filter values. Default is None. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with fields, labels, and their possible values for filtering: - field: Filter field name. - field_label: Filter field label. - label: Value label. - value: Value.\nExample:\nmi.source_filters(\"TGS00010\", 2020, \"2\")",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "source_filters"
+    ]
+  },
+  {
+    "objectID": "reference/source_filters.html#functions",
+    "href": "reference/source_filters.html#functions",
+    "title": "source_filters",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nsource_filters\nFetch possible filtering values for a given source, year, and NUTS level.\n\n\n\n\n\nsource_filters.source_filters(\n    source_name,\n    year,\n    level,\n    filters=None,\n    limit=2500,\n)\nFetch possible filtering values for a given source, year, and NUTS level.\nArgs: source_name (str): The name of the data source (f_resource). year (int): The year for filtering. level (str): The NUTS level (“0”, “1”, “2”, “3”). filters (dict, optional): A dictionary where the keys are filter fields and values are the selected filter values. Default is None. limit (int): Maximum number of results to fetch. Default is 2500.\nReturns: pd.DataFrame: A DataFrame with fields, labels, and their possible values for filtering: - field: Filter field name. - field_label: Filter field label. - label: Value label. - value: Value.\nExample:\nmi.source_filters(\"TGS00010\", 2020, \"2\")",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "source_filters"
+    ]
+  },
+  {
+    "objectID": "reference/nuts_levels.html",
+    "href": "reference/nuts_levels.html",
+    "title": "nuts_levels",
+    "section": "",
+    "text": "nuts_levels\nnuts_levels()\nGet a list of available NUTS levels.\nReturns: list: A list of valid NUTS levels as strings that will be accepted by other functions.\nExample:\nmi.nuts_levels()\n# ['3', '2', '1', '0']",
+    "crumbs": [
+      "API Reference",
+      "Core Functions",
+      "nuts_levels"
+    ]
+  }
+]
