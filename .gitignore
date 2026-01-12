@@ -166,3 +166,4 @@ cython_debug/
 *.egg-info
 
 private
+reference/

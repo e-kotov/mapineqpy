@@ -19,6 +19,7 @@ def sources(level, year=None, limit=2500):
             - description: Full description of the data source
 
     Example:
+
         ```python
         mi.sources("3", limit=10)
         mi.sources("3", year=2020)
@@ -74,6 +75,7 @@ def source_coverage(source_name, limit=2500):
             - description: Full description of the data source
 
     Example:
+
         ```python
         mi.source_coverage("BD_HGNACE2_R3")
         ```

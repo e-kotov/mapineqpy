@@ -11,6 +11,7 @@ def nuts_levels():
         list: A list of valid NUTS levels as strings that will be accepted by other functions.
 
     Example:
+
         ```python
         mi.nuts_levels()
         # ['3', '2', '1', '0']
