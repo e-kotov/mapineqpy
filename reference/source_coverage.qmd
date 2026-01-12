@@ -19,4 +19,6 @@ Returns:
         - description: Full description of the data source
 
 Example:
-    >>> mi.source_coverage("BD_HGNACE2_R3")
+    ```python
+    mi.source_coverage("BD_HGNACE2_R3")
+    ```
