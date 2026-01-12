@@ -22,6 +22,12 @@ def source_filters(source_name, year, level, filters=None, limit=2500):
             - field_label: Filter field label.
             - label: Value label.
             - value: Value.
+
+    Example:
+
+    ```python
+    mi.source_filters("TGS00010", 2020, "2")
+    ```
     """
     if filters is None:
         filters = {}
